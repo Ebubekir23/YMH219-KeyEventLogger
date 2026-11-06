@@ -51,6 +51,30 @@ namespace KeyEventLogger
             ArayuzuGuncelle();
         }
 
+        private void btnKaydet_Click(object? sender, EventArgs e)
+        {
+            using (SaveFileDialog pencere = new SaveFileDialog())
+            {
+                pencere.Filter = "Metin dosyası (*.txt)|*.txt";
+                pencere.FileName = $"tus_kayitlari_{DateTime.Now:yyyyMMdd_HHmmss}.txt";
+
+                if (pencere.ShowDialog(this) != DialogResult.OK)
+                    return;
+
+                try
+                {
+                    DosyaKaydedici.Kaydet(pencere.FileName, oturum.Kayitlar);
+                    MessageBox.Show(this, $"{oturum.Kayitlar.Count} kayıt dosyaya yazıldı.", "Kaydedildi",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception hata) when (hata is IOException || hata is UnauthorizedAccessException)
+                {
+                    MessageBox.Show(this, $"Dosya kaydedilemedi:\n{hata.Message}", "Hata",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
         private void AnaForm_KeyDown(object? sender, KeyEventArgs e)
         {
             if (!oturum.KayitAktif)
@@ -101,6 +125,7 @@ namespace KeyEventLogger
             btnBaslat.Enabled = !oturum.KayitAktif;
             btnDurdur.Enabled = oturum.KayitAktif;
             btnTemizle.Enabled = oturum.Kayitlar.Count > 0;
+            btnKaydet.Enabled = oturum.Kayitlar.Count > 0;
 
             lblDurum.Text = oturum.KayitAktif ? "● KAYIT AKTİF" : "○ KAYIT DURDU";
             lblDurum.BackColor = oturum.KayitAktif ? Color.Firebrick : Color.DimGray;

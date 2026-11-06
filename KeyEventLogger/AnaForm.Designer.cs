@@ -16,6 +16,7 @@ namespace KeyEventLogger
             btnBaslat = new Button();
             btnDurdur = new Button();
             btnTemizle = new Button();
+            btnKaydet = new Button();
             lblDurum = new Label();
             chkKeyUp = new CheckBox();
             lstKayitlar = new ListBox();
@@ -51,6 +52,16 @@ namespace KeyEventLogger
             btnTemizle.Text = "Temizle";
             btnTemizle.UseVisualStyleBackColor = true;
             btnTemizle.Click += btnTemizle_Click;
+            //
+            // btnKaydet
+            //
+            btnKaydet.Location = new Point(330, 12);
+            btnKaydet.Name = "btnKaydet";
+            btnKaydet.Size = new Size(120, 36);
+            btnKaydet.TabIndex = 7;
+            btnKaydet.Text = "Dosyaya Kaydet";
+            btnKaydet.UseVisualStyleBackColor = true;
+            btnKaydet.Click += btnKaydet_Click;
             //
             // lblDurum
             //
@@ -101,6 +112,7 @@ namespace KeyEventLogger
             Controls.Add(lstKayitlar);
             Controls.Add(chkKeyUp);
             Controls.Add(lblDurum);
+            Controls.Add(btnKaydet);
             Controls.Add(btnTemizle);
             Controls.Add(btnDurdur);
             Controls.Add(btnBaslat);
@@ -119,6 +131,7 @@ namespace KeyEventLogger
         private Button btnBaslat = null!;
         private Button btnDurdur = null!;
         private Button btnTemizle = null!;
+        private Button btnKaydet = null!;
         private Label lblDurum = null!;
         private CheckBox chkKeyUp = null!;
         private ListBox lstKayitlar = null!;
