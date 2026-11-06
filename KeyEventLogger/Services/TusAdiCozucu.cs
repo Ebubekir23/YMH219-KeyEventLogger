@@ -54,7 +54,7 @@ namespace KeyEventLogger.Services
             {
                 uint karakter = MapVirtualKey((uint)tus, VkToChar) & 0x7FFF;
                 if (karakter != 0)
-                    return ((char)karakter).ToString();
+                    return char.ToUpper((char)karakter).ToString(); // geçerli kültürle: i -> İ
             }
 
             return tus.ToString();
