@@ -21,6 +21,10 @@ namespace KeyEventLogger
             chkKeyUp = new CheckBox();
             lstKayitlar = new ListBox();
             lblBilgi = new Label();
+            grpIstatistik = new GroupBox();
+            lblToplam = new Label();
+            lstEnSik = new ListBox();
+            grpIstatistik.SuspendLayout();
             SuspendLayout();
             //
             // btnBaslat
@@ -90,7 +94,7 @@ namespace KeyEventLogger
             lstKayitlar.IntegralHeight = false;
             lstKayitlar.Location = new Point(12, 88);
             lstKayitlar.Name = "lstKayitlar";
-            lstKayitlar.Size = new Size(756, 400);
+            lstKayitlar.Size = new Size(536, 400);
             lstKayitlar.TabIndex = 5;
             //
             // lblBilgi
@@ -103,11 +107,40 @@ namespace KeyEventLogger
             lblBilgi.TabIndex = 6;
             lblBilgi.Text = "Yalnızca bu pencere odaktayken basılan tuşlar kaydedilir. Başka uygulamalardan veri toplanmaz.";
             //
+            // grpIstatistik
+            //
+            grpIstatistik.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
+            grpIstatistik.Controls.Add(lstEnSik);
+            grpIstatistik.Controls.Add(lblToplam);
+            grpIstatistik.Location = new Point(556, 82);
+            grpIstatistik.Name = "grpIstatistik";
+            grpIstatistik.Size = new Size(212, 406);
+            grpIstatistik.TabIndex = 8;
+            grpIstatistik.TabStop = false;
+            grpIstatistik.Text = "İstatistik";
+            //
+            // lblToplam
+            //
+            lblToplam.Location = new Point(10, 26);
+            lblToplam.Name = "lblToplam";
+            lblToplam.Size = new Size(192, 44);
+            lblToplam.TabIndex = 0;
+            //
+            // lstEnSik
+            //
+            lstEnSik.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            lstEnSik.IntegralHeight = false;
+            lstEnSik.Location = new Point(10, 74);
+            lstEnSik.Name = "lstEnSik";
+            lstEnSik.Size = new Size(192, 320);
+            lstEnSik.TabIndex = 1;
+            //
             // AnaForm
             //
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(780, 528);
+            Controls.Add(grpIstatistik);
             Controls.Add(lblBilgi);
             Controls.Add(lstKayitlar);
             Controls.Add(chkKeyUp);
@@ -124,6 +157,7 @@ namespace KeyEventLogger
             Deactivate += AnaForm_Deactivate;
             KeyDown += AnaForm_KeyDown;
             KeyUp += AnaForm_KeyUp;
+            grpIstatistik.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -136,5 +170,8 @@ namespace KeyEventLogger
         private CheckBox chkKeyUp = null!;
         private ListBox lstKayitlar = null!;
         private Label lblBilgi = null!;
+        private GroupBox grpIstatistik = null!;
+        private Label lblToplam = null!;
+        private ListBox lstEnSik = null!;
     }
 }

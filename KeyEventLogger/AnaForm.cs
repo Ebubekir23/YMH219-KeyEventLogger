@@ -129,6 +129,11 @@ namespace KeyEventLogger
 
             lblDurum.Text = oturum.KayitAktif ? "● KAYIT AKTİF" : "○ KAYIT DURDU";
             lblDurum.BackColor = oturum.KayitAktif ? Color.Firebrick : Color.DimGray;
+
+            lblToplam.Text = $"Toplam basma: {oturum.ToplamBasma()}\nEn sık basılan tuşlar:";
+            lstEnSik.Items.Clear();
+            foreach (KeyValuePair<string, int> tus in oturum.EnSikTuslar(10))
+                lstEnSik.Items.Add($"{tus.Key}: {tus.Value}");
         }
     }
 }
