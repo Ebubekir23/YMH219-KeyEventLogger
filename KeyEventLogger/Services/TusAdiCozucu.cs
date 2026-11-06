@@ -8,7 +8,7 @@ namespace KeyEventLogger.Services
         private const uint VkToChar = 2; // MAPVK_VK_TO_CHAR
 
         // Etkin klavye düzenine göre tuşun karakterini verir (Türkçe Ş, Ğ, Ü gibi Oem tuşları için)
-        [DllImport("user32.dll")]
+        [DllImport("user32.dll", CharSet = CharSet.Unicode)]
         private static extern uint MapVirtualKey(uint kod, uint harita);
 
         public static string Coz(KeyEventArgs e)
@@ -50,7 +50,7 @@ namespace KeyEventLogger.Services
                 return ((int)(tus - Keys.D0)).ToString();
 
             // Noktalama ve Türkçe harf tuşları (Oem...) için klavye düzenine bak
-            if (tus.ToString().StartsWith("Oem"))
+            if (tus.ToString().StartsWith("Oem", StringComparison.Ordinal))
             {
                 uint karakter = MapVirtualKey((uint)tus, VkToChar) & 0x7FFF;
                 if (karakter != 0)
